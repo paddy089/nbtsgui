@@ -30,11 +30,20 @@ function renderAllSubscribers(subs) {
     console.log(subs[1][3]);
 
     var subsL = subs.length,
-        indices = [0,3,5],
+        indices = [0, 3, 5],
         tbody = document.createElement('tbody'),
         tr,
         td,
-        sub;
+        sub,
+        header = ' <thead>\n' +
+        '            <tr>\n' +
+        '                <th>Id</th>\n' +
+        '                <th>IMSI</th>\n' +
+        '                <th>Extension</th>\n' +
+        '            </tr>\n' +
+        '            </thead>';
+
+    $('#substable').append(header);
 
 
     for (var i = 0; i < subsL; i++) {
@@ -50,7 +59,7 @@ function renderAllSubscribers(subs) {
         }
         tbody.appendChild(tr);
     }
-    document.getElementById('substable').appendChild(tbody);
+    $('#substable').append(tbody);
 }
 
 
@@ -65,7 +74,7 @@ function looper() {
     updateSubscriber();
 
     setTimeout(function () {
-         looper();
+        looper();
     }, 60000)
 }
 
