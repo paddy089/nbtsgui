@@ -4,25 +4,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>nanoBTS</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-<h1>nanoBTS Index</h1>
-<div id="subs"></div>
-<div>
-{% for sub in subs %}
-<p>{{ sub.0 }}</p>
-<p>{{ sub.1 }}</p>
-{% endfor %}
-</div>
-<button id="sendsms" data-id="user1"  class="btn btn-mini btn-danger glyphicon" type="button">
-    Button
-</button>
+<main>
+
+    <h1>nanoBTS Index</h1>
+    <button id="sendsms" data-id="user1" class="btn btn-mini btn-danger glyphicon" type="button">
+        Show subscribers
+    </button>
+
+
+    {% comment %}<div class="table table-hover" id="subs">
+        <thead>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+    </div>{% endcomment %}
+
+    <div class="panel panel-default" id="subs">
+        <div class="panel-heading">Subscriber</div>
+        <table class="table" id="substable">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>IMSI</th>
+                <th>Extension</th>
+            </tr>
+            </thead>
+
+        </table>
+
+    </div>
+
+
+</main>
+
 
 <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
+
+
+{#<div>#}
+{% comment %}{% for sub in subs %}
+<p>{{ sub.0 }}</p>
+<p>{{ sub.1 }}</p>
+{% endfor %}{% endcomment %}
+{#</div>#}
