@@ -33,19 +33,13 @@ function renderAllSubscribers(subs) {
         indices = [0,3,5],
         tbody = document.createElement('tbody'),
         tr,
-        td;
+        td,
+        sub;
 
 
     for (var i = 0; i < subsL; i++) {
 
-        var sub = subs[i];
-        var id = sub[0];
-        var imsi = sub[3];
-        var number = sub[5]
-
-        var strImsi = ' IMSI: ' + imsi;
-        var strId = ' Id: ' + id;
-        var strNumber = ' Extension: ' + number;
+        sub = subs[i];
 
         tr = document.createElement('tr');
 
@@ -55,17 +49,24 @@ function renderAllSubscribers(subs) {
             td.innerHTML = sub[indices[c]];
         }
         tbody.appendChild(tr);
-
-
-        //$('#subs').append('<div id="\'' + id + '\'"></div>');
-
-        //  $('#' + id).append('<div class="" id="\'' + id + '\'">' + strId + '</div>');
-
-
-        //html += '<div class="" id="\'' + id + '\'">' + strId + strImsi + strNumber + '</div>';
-
     }
     document.getElementById('substable').appendChild(tbody);
+}
+
+
+function updateSubscriber() {
+    $('#substable').empty();
+    renderAllSubscribers();
+}
+
+
+function looper() {
+
+    updateSubscriber();
+
+    setTimeout(function () {
+         looper();
+    }, 60000)
 }
 
 
