@@ -10,6 +10,13 @@
 </head>
 <body>
 <h1>nanoBTS Index</h1>
+<div id="subs"></div>
+<div>
+{% for sub in subs %}
+<p>{{ sub.0 }}</p>
+<p>{{ sub.1 }}</p>
+{% endfor %}
+</div>
 <button id="sendsms" data-id="user1"  class="btn btn-mini btn-danger glyphicon" type="button">
     Button
 </button>
