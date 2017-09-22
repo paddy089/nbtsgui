@@ -6,7 +6,7 @@ print('Connection established!')
 
 ##vars
 # admin subscriber id
-adminSubID = 9
+adminSubID = 20
 subscriberList = []
 
 ## arguments
