@@ -11,10 +11,34 @@
 <body>
 <main>
 
-    <h1>nanoBTS Index</h1>
-    <button id="sendsms" data-id="user1" class="btn btn-mini btn-danger glyphicon" type="button">
-        Show subscribers
-    </button>
+    <h1>nanoBTS with OpenBSC</h1>
+
+    <div class="content">
+
+    <div class="col-sm-4" id="buttons">
+        <ul>
+            <li class="listheader" id="refreshlistheader">
+                Update subscriber list
+            </li>
+            <li>
+               <button id="showsubs" data-id="" class="btn btn-mini btn-danger glyphicon" type="button">
+                    Refresh
+                </button>
+            </li>
+            <li class="listheader" id="smslistheader">
+                Send broadcast to subscribers
+            </li>
+            <li>
+                <button id="sendsms" data-id="" class="btn btn-mini btn-primary glyphicon" type="button">
+                    Broadcast
+                </button>
+                <button id="selectall" data-id="" class="btn btn-mini btn-primary glyphicon" type="button">
+                    Select all
+                </button>
+            </li>
+        </ul>
+
+    </div>
 
 
     {% comment %}<div class="table table-hover" id="subs">
@@ -27,18 +51,19 @@
         </thead>
     </div>{% endcomment %}
 
-    <div class="panel panel-default" id="subs">
+    <div class="panel panel-default col-sm-6 table-responsive" id="subs">
+
         <div class="panel-heading">Subscriber</div>
-        <table class="table" id="substable">
-{#            <thead>#}
-{#            <tr>#}
-{#                <th>Id</th>#}
-{#                <th>IMSI</th>#}
-{#                <th>Extension</th>#}
-{#            </tr>#}
-{#            </thead>#}
-        </table>
+
+        <table class="table table-hover table-bordered table-condensed" id="substable"></table>
     </div>
+{##}
+{#    <div class="col-sm-2">#}
+{#         <button id="showsubs" data-id="" class="btn btn-mini btn-danger glyphicon" type="button">#}
+{#                    Show subscribers#}
+{#                </button>#}
+{#    </div>#}
+        </div>
 
 
 </main>

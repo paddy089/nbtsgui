@@ -26,11 +26,16 @@ function sendRequest(element) {
 
 function renderAllSubscribers(subs) {
 
+    if ($('#substable').children().length > 0) {
+         $('#substable').empty();
+    }
+
+
     // test print IMSI
-    console.log(subs[1][3]);
+    console.log('test print imsi: ' + subs[1][3]);
 
     var subsL = subs.length,
-        indices = [0, 3, 5],
+        indices = [0, 3, 5, 4, 999],
         tbody = document.createElement('tbody'),
         tr,
         td,
@@ -40,6 +45,8 @@ function renderAllSubscribers(subs) {
         '                <th>Id</th>\n' +
         '                <th>IMSI</th>\n' +
         '                <th>Extension</th>\n' +
+        '                <th>State</th>\n' +
+        '                <th>Select</th>\n' +
         '            </tr>\n' +
         '            </thead>';
 
@@ -52,10 +59,34 @@ function renderAllSubscribers(subs) {
 
         tr = document.createElement('tr');
 
-        for (var c = 0; c < 3; c++) {
+        for (var c = 0; c < indices.length; c++) {
+
             td = document.createElement('td');
             tr.appendChild(td);
-            td.innerHTML = sub[indices[c]];
+
+            if (c < 4) {
+                td.innerHTML = sub[indices[c]];
+            }
+
+            if (c === 4) {
+                //$('<input id="\'' + 99 + '\'" type="checkbox" value="">');
+                //td.innerHTML = document.createElement('<input id="\'' + 99 + '\'" type="checkbox" value="">');
+                var box = document.createElement('input');
+                box.setAttribute("id", sub[0]);
+                box.setAttribute("type", "checkbox");
+                box.setAttribute("value", "");
+                //td.innerHTML = box;
+                td.appendChild(box);
+
+            }
+
+            //td.innerHTML = document.createElement('<input type="checkbox" value="" id="\'' + sub[i] + '\'">');
+
+            // $('#subs').append('<div id=" "+subs[i][1]+" ">' + subs[i][3] + '</div>');
+
+             //  $('#' + id).append('<div class="" id="\'' + id + '\'">' + strId + '</div>');
+
+
         }
         tbody.appendChild(tr);
     }
@@ -64,7 +95,6 @@ function renderAllSubscribers(subs) {
 
 
 function updateSubscriber() {
-    $('#substable').empty();
     renderAllSubscribers();
 }
 
@@ -79,12 +109,20 @@ function looper() {
 }
 
 
-$('#sendsms').on('click', function (event) {
+$('#showsubs').on('click', function (event) {
     event.preventDefault();
     var element = $(this);
     console.log('button clicked');
 
     sendRequest(element);
+});
+
+$('#sendsms').on('click', function (event) {
+    event.preventDefault();
+    var element = $(this);
+    console.log('button clicked');
+
+    //sendRequest(element);
 });
 
 
