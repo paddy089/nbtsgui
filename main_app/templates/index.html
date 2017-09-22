@@ -11,7 +11,9 @@
 <body>
 <main>
 
-    <h1>nanoBTS with OpenBSC</h1>
+    <div>
+        <h1>nanoBTS with OpenBSC</h1>
+    </div>
 
     <div class="content">
 
@@ -32,8 +34,11 @@
                     <button id="sendbroadcast" data-id="" class="btn btn-mini btn-primary" type="button">
                         Broadcast
                     </button>
-                    <button id="selectall" data-id="" class="btn btn-mini btn-primary" type="button">
+                    <button id="selectall" data-id="" class="btn btn-mini btn-default" type="button">
                         Select all
+                    </button>
+                    <button id="selectnone" data-id="" class="btn btn-mini btn-default" type="button">
+                        Select none
                     </button>
                 </li>
                 <li>
@@ -59,7 +64,7 @@
         </thead>
     </div>{% endcomment %}
 
-        <div class="panel panel-default col-sm-7 table-responsive" id="subs">
+        <div class="panel panel-default col-sm-6 col-sm-offset-1 table-responsive" id="subs">
 
             <div class="panel-heading">Subscriber</div>
 

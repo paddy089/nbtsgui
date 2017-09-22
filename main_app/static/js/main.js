@@ -14,7 +14,7 @@ function getSubscribers(element) {
             //$('#ajaxGif').hide();
         },
         error: function () {
-            alert("Request has failed");
+            alert("'getSubscribers' Request has failed");
         },
         success: function (response) {
             var o = JSON.parse(response);
@@ -24,11 +24,11 @@ function getSubscribers(element) {
     })
 }
 
-function sendBroadcast(message) {
+function sendBroadcast(data) {
     $.ajax({
         url: '/send_broadcast/',
         type: 'GET',
-        //data: element.attr('data-id')
+        data: data,
         async: true,
         beforeSend: function () {
             //$('#ajaxGif').show();
@@ -117,18 +117,59 @@ function renderAllSubscribers(subs) {
 }
 
 
-function updateSubscriber() {
-    renderAllSubscribers();
+function updateSubscribers() {
+    getSubscribers();
 }
 
 
-function looper() {
+// function looper() {
+//
+//     updateSubscriber();
+//
+//     setTimeout(function () {
+//         looper();
+//     }, 60000)
+// }
 
-    updateSubscriber();
+function evaluateCheckboxes() {
 
-    setTimeout(function () {
-        looper();
-    }, 60000)
+    var boxes = getAllCheckboxes();
+    console.log(boxes);
+
+    var checkedBoxes = [];
+
+    for (var i = 0; i < boxes.length; i++) {
+
+        if (boxes[i].checked === true) {
+
+            checkedBoxes.push(boxes[i].value);
+        }
+
+        //console.log(boxes[i].value);
+    }
+    console.log(checkedBoxes);
+
+    return checkedBoxes;
+}
+
+function getAllCheckboxes() {
+    return document.querySelectorAll('input[type=checkbox]');
+}
+
+function selectAllSubscribers() {
+    var boxes = getAllCheckboxes();
+    for (var i = 0; i < boxes.length; i++) {
+        //boxes[i].checked = boxes[i].checked ? false : true;
+        boxes[i].checked = true;
+    }
+}
+
+function selectNoSubscribers() {
+    var boxes = getAllCheckboxes();
+    for (var i = 0; i < boxes.length; i++) {
+        //boxes[i].checked = boxes[i].checked ? false : true;
+        boxes[i].checked = false;
+    }
 }
 
 
@@ -145,29 +186,15 @@ $('#selectall').on('click', function (event) {
     var element = $(this);
     console.log('selectall button clicked');
 
-    // testing //
-    var gg = document.getElementById('checkbox0');
-    if (gg.checked) {
-        console.log('checked');
-    } else {
-        console.log('unchecked')
-    }
+    selectAllSubscribers();
+});
 
-    console.log(gg.value);
-    // testing end //
+$('#selectnone').on('click', function (event) {
+    event.preventDefault();
+    var element = $(this);
+    console.log('selectnone button clicked');
 
-    var boxes = document.querySelectorAll('input[type=checkbox]');
-    console.log(boxes);
-
-    var checkedBoxes = [];
-
-    // for (var i = 0; i < boxes.length; i++) {
-    //     if (boxes[i])) {
-    //
-    //         checkedBoxes.push(boxes[i].value);
-    //     }
-    // }
-
+    selectNoSubscribers();
 });
 
 $('#sendbroadcast').on('click', function (event) {
@@ -179,18 +206,21 @@ $('#sendbroadcast').on('click', function (event) {
     console.log(message);
 
 
+    var selectedSubs = evaluateCheckboxes();
+    console.log('selectedSubs: '+ selectedSubs);
 
-
-
+    var data = [selectedSubs, message];
+    console.log(data);
 
     //sendBroadcast();
 });
 
 function init() {
-    setTimeout(function () {
-        console.log('init startet');
-        getSubscribers();
-    }, 3000)
+    getSubscribers();
+    // setTimeout(function () {
+    //     console.log('init startet');
+    //     getSubscribers();
+    // }, 3000)
 }
 
 init();
