@@ -210,7 +210,12 @@ $('#sendbroadcast').on('click', function (event) {
     var data = [selectedSubs, message];
     console.log(data);
 
-    sendBroadcast();
+    var obj = {
+        subs: selectedSubs,
+        msg: message
+    }
+
+    sendBroadcast(obj);
 });
 
 function init() {
