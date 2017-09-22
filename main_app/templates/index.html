@@ -11,45 +11,56 @@
 <body>
 <main>
 
-    <div>
+
         <h1>nanoBTS with OpenBSC</h1>
-    </div>
+
+
 
     <div class="content">
-
-        <div class="col-sm-4" id="buttons">
-            <ul>
-                <li class="listheader" id="refreshlistheader">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1 border-test">
+                <h2 class="listheader" id="refreshlistheader">
                     Update subscriber list
-                </li>
-                <li>
-                    <button id="showsubs" data-id="" class="btn btn-mini btn-danger" type="button">
-                        Refresh
-                    </button>
-                </li>
-                <li class="listheader" id="smslistheader">
+                </h2>
+                <button id="showsubs" data-id="" class="btn btn-danger margin-bottom" type="button">Update</button>
+
+
+                <h2 class="listheader margin-top" id="smslistheader">
                     Send admin message to subscribers
-                </li>
-                <li>
-                    <button id="sendbroadcast" data-id="" class="btn btn-mini btn-primary" type="button">
-                        Broadcast
-                    </button>
-                    <button id="selectall" data-id="" class="btn btn-mini btn-default" type="button">
-                        Select all
-                    </button>
-                    <button id="selectnone" data-id="" class="btn btn-mini btn-default" type="button">
-                        Select none
-                    </button>
-                </li>
-                <li>
-                    <div class="form-group">
-                        <div class="">
-                            <textarea class="form-control" rows="3" id="textArea"></textarea>
-                            <span class="help-block">Type in your message above</span>
-                        </div>
+                </h2>
+                <button id="sendbroadcast" data-id="" class="btn  btn-primary" type="button">
+                    Broadcast
+                </button>
+
+                <div class=" margin-top_small">
+                    <button id="selectall" data-id="" class="btn btn-sm btn-default" type="button">
+                    Select all
+                </button>
+                <button id="selectnone" data-id="" class="btn btn-sm btn-default" type="button">
+                    Select none
+                </button>
+
+                </div>
+
+                <div class="form-group margin-top padding-right">
+                    <div class="">
+                        <span class="help-block">Type in your message</span>
+                        <textarea class="form-control" rows="3" id="textArea"></textarea>
+
                     </div>
-                </li>
-            </ul>
+                </div>
+            </div>
+
+
+            <div class="col-sm-6  border-test">
+                <div class="panel panel-default col-sm-12  table-responsive" id="subs">
+
+                    <div class="panel-heading">Subscriber</div>
+
+                    <table class="table table-hover table-bordered table-condensed" id="substable"></table>
+                </div>
+
+            </div>
 
         </div>
 
@@ -64,12 +75,7 @@
         </thead>
     </div>{% endcomment %}
 
-        <div class="panel panel-default col-sm-6 col-sm-offset-1 table-responsive" id="subs">
 
-            <div class="panel-heading">Subscriber</div>
-
-            <table class="table table-hover table-bordered table-condensed" id="substable"></table>
-        </div>
         {##}
         {#    <div class="col-sm-2">#}
         {#         <button id="showsubs" data-id="" class="btn btn-mini btn-danger glyphicon" type="button">#}

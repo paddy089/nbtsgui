@@ -8,22 +8,14 @@ import json
 
 # Create your views here.
 def index(request):
-    # s = getSubscribers()
-    # return HttpResponse('<h1>' + s + '</h1>')
-    #return render(request, 'index.html', {'subs', subs})
     return render(request, 'index.html')
 
 
 def get_subscribers(request):
-    # id = request.GET.get('', None)
-    # form = InputForm(request.POST)
-    # if from.is_valid():
     s = getSubscribers()
-
-    #print(s[0])
-
     s = json.dumps(s)
     print(s)
+
     return HttpResponse(s)
 
 
@@ -36,6 +28,6 @@ def send_broadcast(request):
     print(subs)
     print(msg)
 
-    broadcastSMS(subs, msg)
+    #broadcastSMS(subs, msg)
 
     return HttpResponse('send_broadcast success')

@@ -90,24 +90,13 @@ function renderAllSubscribers(subs) {
             }
 
             if (c === 4) {
-                //$('<input id="\'' + 99 + '\'" type="checkbox" value="">');
-                //td.innerHTML = document.createElement('<input id="\'' + 99 + '\'" type="checkbox" value="">');
                 var box = document.createElement('input');
                 box.setAttribute("id", "checkbox" + i);
                 box.setAttribute("type", "checkbox");
                 box.setAttribute("value", sub[0]);
-                //td.innerHTML = box;
                 td.appendChild(box);
 
             }
-
-            //td.innerHTML = document.createElement('<input type="checkbox" value="" id="\'' + sub[i] + '\'">');
-
-            // $('#subs').append('<div id=" "+subs[i][1]+" ">' + subs[i][3] + '</div>');
-
-             //  $('#' + id).append('<div class="" id="\'' + id + '\'">' + strId + '</div>');
-
-
         }
         tbody.appendChild(tr);
     }
@@ -215,8 +204,6 @@ $('#sendbroadcast').on('click', function (event) {
         msg: message
     }
 
-    //obj = JSON.stringify(obj);
-
     console.log(obj);
 
     sendBroadcast(obj);
@@ -230,6 +217,6 @@ function init() {
     // }, 3000)
 }
 
-init();
+//init();
 
 console.log('main.js loaded')
