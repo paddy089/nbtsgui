@@ -24,9 +24,9 @@ function getSubscribers(element) {
     })
 }
 
-function sendBroadcast(element) {
+function sendBroadcast(message) {
     $.ajax({
-        url: '',
+        url: '/send_broadcast/',
         type: 'GET',
         //data: element.attr('data-id')
         async: true,
@@ -95,9 +95,9 @@ function renderAllSubscribers(subs) {
                 //$('<input id="\'' + 99 + '\'" type="checkbox" value="">');
                 //td.innerHTML = document.createElement('<input id="\'' + 99 + '\'" type="checkbox" value="">');
                 var box = document.createElement('input');
-                box.setAttribute("id", sub[0]);
+                box.setAttribute("id", "checkbox" + i);
                 box.setAttribute("type", "checkbox");
-                box.setAttribute("value", "");
+                box.setAttribute("value", sub[0]);
                 //td.innerHTML = box;
                 td.appendChild(box);
 
@@ -135,18 +135,64 @@ function looper() {
 $('#showsubs').on('click', function (event) {
     event.preventDefault();
     var element = $(this);
-    console.log('button clicked');
+    console.log('showsubs button clicked');
 
     getSubscribers(element);
+});
+
+$('#selectall').on('click', function (event) {
+    event.preventDefault();
+    var element = $(this);
+    console.log('selectall button clicked');
+
+    // testing //
+    var gg = document.getElementById('checkbox0');
+    if (gg.checked) {
+        console.log('checked');
+    } else {
+        console.log('unchecked')
+    }
+
+    console.log(gg.value);
+    // testing end //
+
+    var boxes = document.querySelectorAll('input[type=checkbox]');
+    console.log(boxes);
+
+    var checkedBoxes = [];
+
+    // for (var i = 0; i < boxes.length; i++) {
+    //     if (boxes[i])) {
+    //
+    //         checkedBoxes.push(boxes[i].value);
+    //     }
+    // }
+
 });
 
 $('#sendbroadcast').on('click', function (event) {
     event.preventDefault();
     var element = $(this);
-    console.log('button clicked');
+    console.log('broadcast button clicked');
 
-    //getSubscribers(element);
+    var message = document.getElementById("textArea").value;
+    console.log(message);
+
+
+
+
+
+
+    //sendBroadcast();
 });
 
+function init() {
+    setTimeout(function () {
+        console.log('init startet');
+        getSubscribers();
+    }, 3000)
+}
+
+init();
 
 console.log('main.js loaded')
