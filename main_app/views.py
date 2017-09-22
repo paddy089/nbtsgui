@@ -23,15 +23,16 @@ def get_subscribers(request):
     #print(s[0])
 
     s = json.dumps(s)
-    #print(s)
+    print(s)
     return HttpResponse(s)
 
 
-def send_broadcast():
-    broadcastSMS()
+def send_broadcast(request):
+    print(request)
 
+    #subs = request[0]
+    #msg = request[1]
 
+    broadcastSMS(request)
 
-# subs = [
-#     (1, '2017-09-21 08:00:01', '2017-09-21 09:22:24', 262029916008251, '', '32171', 0, '1184922295', 0, '2017-09-21 09:22:14')
-# ]
+    return HttpResponse('send_broadcast success')

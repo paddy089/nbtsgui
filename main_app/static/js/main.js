@@ -37,12 +37,10 @@ function sendBroadcast(data) {
             //$('#ajaxGif').hide();
         },
         error: function () {
-            alert("Request has failed");
+            alert("'sendBroadcast' Request has failed");
         },
         success: function (response) {
-            var o = JSON.parse(response);
-            console.log(o);
-            //renderAllSubscribers(o)
+            console.log(response);
         }
     })
 }
@@ -212,7 +210,7 @@ $('#sendbroadcast').on('click', function (event) {
     var data = [selectedSubs, message];
     console.log(data);
 
-    //sendBroadcast();
+    sendBroadcast();
 });
 
 function init() {
