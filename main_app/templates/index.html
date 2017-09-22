@@ -15,33 +15,41 @@
 
     <div class="content">
 
-    <div class="col-sm-4" id="buttons">
-        <ul>
-            <li class="listheader" id="refreshlistheader">
-                Update subscriber list
-            </li>
-            <li>
-               <button id="showsubs" data-id="" class="btn btn-mini btn-danger glyphicon" type="button">
-                    Refresh
-                </button>
-            </li>
-            <li class="listheader" id="smslistheader">
-                Send broadcast to subscribers
-            </li>
-            <li>
-                <button id="sendsms" data-id="" class="btn btn-mini btn-primary glyphicon" type="button">
-                    Broadcast
-                </button>
-                <button id="selectall" data-id="" class="btn btn-mini btn-primary glyphicon" type="button">
-                    Select all
-                </button>
-            </li>
-        </ul>
+        <div class="col-sm-4" id="buttons">
+            <ul>
+                <li class="listheader" id="refreshlistheader">
+                    Update subscriber list
+                </li>
+                <li>
+                    <button id="showsubs" data-id="" class="btn btn-mini btn-danger" type="button">
+                        Refresh
+                    </button>
+                </li>
+                <li class="listheader" id="smslistheader">
+                    Send broadcast to subscribers
+                </li>
+                <li>
+                    <button id="sendbroadcast" data-id="" class="btn btn-mini btn-primary" type="button">
+                        Broadcast
+                    </button>
+                    <button id="selectall" data-id="" class="btn btn-mini btn-primary" type="button">
+                        Select all
+                    </button>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <div class="">
+                            <textarea class="form-control" rows="3" id="textArea"></textarea>
+                            <span class="help-block">Type in your message above</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
 
-    </div>
+        </div>
 
 
-    {% comment %}<div class="table table-hover" id="subs">
+        {% comment %}<div class="table table-hover" id="subs">
         <thead>
         <tr>
             <th>Firstname</th>
@@ -51,19 +59,19 @@
         </thead>
     </div>{% endcomment %}
 
-    <div class="panel panel-default col-sm-6 table-responsive" id="subs">
+        <div class="panel panel-default col-sm-7 table-responsive" id="subs">
 
-        <div class="panel-heading">Subscriber</div>
+            <div class="panel-heading">Subscriber</div>
 
-        <table class="table table-hover table-bordered table-condensed" id="substable"></table>
-    </div>
-{##}
-{#    <div class="col-sm-2">#}
-{#         <button id="showsubs" data-id="" class="btn btn-mini btn-danger glyphicon" type="button">#}
-{#                    Show subscribers#}
-{#                </button>#}
-{#    </div>#}
+            <table class="table table-hover table-bordered table-condensed" id="substable"></table>
         </div>
+        {##}
+        {#    <div class="col-sm-2">#}
+        {#         <button id="showsubs" data-id="" class="btn btn-mini btn-danger glyphicon" type="button">#}
+        {#                    Show subscribers#}
+        {#                </button>#}
+        {#    </div>#}
+    </div>
 
 
 </main>

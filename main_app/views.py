@@ -2,6 +2,7 @@ from django.shortcuts import render
 # from .forms import InputForm
 from django.http import HttpResponse
 from .DatabaseAccess import *
+from .telnet import *
 import json
 
 
@@ -25,7 +26,10 @@ def get_subscribers(request):
     #print(s)
     return HttpResponse(s)
 
-# def send_sms():
+
+def send_broadcast():
+    broadcastSMS()
+
 
 
 # subs = [

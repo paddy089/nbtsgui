@@ -1,5 +1,4 @@
 body {
-    /*font-size: 100%;*/
     font-family: "Open Sans";
 
 }
@@ -15,11 +14,6 @@ ul {
 ul li {
     padding-bottom: 2rem;
 }
-
-/*#smslistheader {*/
-    /*font-weight: bold;*/
-    /*font-size: large;*/
-/*}*/
 
 .listheader {
     font-weight: bold;

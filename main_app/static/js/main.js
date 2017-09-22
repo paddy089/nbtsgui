@@ -1,7 +1,7 @@
 'use strict';
 
 
-function sendRequest(element) {
+function getSubscribers(element) {
     $.ajax({
         url: '/get_subscribers/',
         type: 'GET',
@@ -20,6 +20,29 @@ function sendRequest(element) {
             var o = JSON.parse(response);
             console.log(o);
             renderAllSubscribers(o)
+        }
+    })
+}
+
+function sendBroadcast(element) {
+    $.ajax({
+        url: '',
+        type: 'GET',
+        //data: element.attr('data-id')
+        async: true,
+        beforeSend: function () {
+            //$('#ajaxGif').show();
+        },
+        complete: function () {
+            //$('#ajaxGif').hide();
+        },
+        error: function () {
+            alert("Request has failed");
+        },
+        success: function (response) {
+            var o = JSON.parse(response);
+            console.log(o);
+            //renderAllSubscribers(o)
         }
     })
 }
@@ -45,7 +68,7 @@ function renderAllSubscribers(subs) {
         '                <th>Id</th>\n' +
         '                <th>IMSI</th>\n' +
         '                <th>Extension</th>\n' +
-        '                <th>State</th>\n' +
+        '                <th>Name</th>\n' +
         '                <th>Select</th>\n' +
         '            </tr>\n' +
         '            </thead>';
@@ -114,15 +137,15 @@ $('#showsubs').on('click', function (event) {
     var element = $(this);
     console.log('button clicked');
 
-    sendRequest(element);
+    getSubscribers(element);
 });
 
-$('#sendsms').on('click', function (event) {
+$('#sendbroadcast').on('click', function (event) {
     event.preventDefault();
     var element = $(this);
     console.log('button clicked');
 
-    //sendRequest(element);
+    //getSubscribers(element);
 });
 
 
