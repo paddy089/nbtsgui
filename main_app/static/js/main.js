@@ -215,9 +215,9 @@ $('#sendbroadcast').on('click', function (event) {
         msg: message
     }
 
-    obj = JSON.stringify(obj);
+    //obj = JSON.stringify(obj);
 
-    //console.log(JSON.parse(obj));
+    console.log(obj);
 
     sendBroadcast(obj);
 });

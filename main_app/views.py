@@ -30,12 +30,12 @@ def get_subscribers(request):
 def send_broadcast(request):
     print(request)
 
-    r = request.GET.get('msg')
+    msg = request.GET.get('msg')
+    subs = request.GET.getlist('subs[]')
 
-    #subs = request[0]
-    #msg = request[1]
+    print(subs)
+    print(msg)
 
-    #broadcastSMS(request)
+    broadcastSMS(subs, msg)
 
-    return HttpResponse(r)
-    #return HttpResponse('send_broadcast success')
+    return HttpResponse('send_broadcast success')
