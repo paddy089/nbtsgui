@@ -1,7 +1,7 @@
 import sqlite3
 
 # database Path
-path = '/Users/paddy/Coding/nbtsgui/main_app/testdatabase/hlr.sqlite3'
+path = '/home/mone2/openbsc-0.14.0/openbsc/src/osmo-nitb/hlr.sqlite3'
 
 cursor = None
 

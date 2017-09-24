@@ -1,7 +1,12 @@
 import telnetlib
 
 ## establish connection BCS(PC) BTS(nanoBTS)
-#tn = telnetlib.Telnet('localhost', port=4242, timeout=20)
+def conTel():
+    tn = telnetlib.Telnet('localhost', port=4242, timeout=20)
+    return tn
+
+tn = conTel()
+
 print('Connection established!')
 
 ##vars
