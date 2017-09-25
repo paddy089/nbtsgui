@@ -2,6 +2,7 @@
 
 
 function getSubscribers() {
+    console.log('get_subscribers ajax')
     $.ajax({
         url: '/get_subscribers/',
         type: 'GET',
@@ -9,6 +10,7 @@ function getSubscribers() {
         async: true,
         beforeSend: function () {
             //$('#ajaxGif').show();
+
         },
         complete: function () {
             //$('#ajaxGif').hide();
@@ -41,7 +43,7 @@ function sendBroadcast(data) {
         },
         success: function (response) {
             console.log(response);
-            getSubscribers()
+
         }
     })
 }
@@ -62,6 +64,7 @@ function delete_subscriber(data) {
             alert("'delete subscriber' Request has failed");
         },
         success: function (response) {
+            getSubscribers();
             console.log(response);
         }
     })
