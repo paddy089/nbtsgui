@@ -8,16 +8,16 @@ main {
     height: 100vh;
 }
 
-ul {
-    list-style: none;
-}
-ul li {
-    padding-bottom: 2rem;
-}
+/*ul {*/
+    /*list-style: none;*/
+/*}*/
+/*ul li {*/
+    /*padding-bottom: 2rem;*/
+/*}*/
 
-ul li:nth-child(3) {
-    padding-top: 2rem;
-}
+/*ul li:nth-child(3) {*/
+    /*padding-top: 2rem;*/
+/*}*/
 
 #selectall {
     /*margin-left: 2.5rem;*/
@@ -27,8 +27,8 @@ ul li:nth-child(3) {
 }
 */
 .panel{
-    padding-left: 0px;
-    padding-right: 0px;
+    padding-left: 0;
+    padding-right: 0;
 }
 .table{
     padding-left: 15px;
@@ -37,7 +37,7 @@ ul li:nth-child(3) {
 .margin-top{
     margin-top: 3rem;
 }
-.margin-top_small{
+.margin-top-small{
     margin-top: 1.5rem;
 }
 .padding-right{

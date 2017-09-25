@@ -1,7 +1,7 @@
 'use strict';
 
 
-function getSubscribers(element) {
+function getSubscribers() {
     $.ajax({
         url: '/get_subscribers/',
         type: 'GET',
@@ -47,10 +47,14 @@ function sendBroadcast(data) {
 
 function renderAllSubscribers(subs) {
 
-    if ($('#substable').children().length > 0) {
-         $('#substable').empty();
-    }
+    var table = $('#substable');
 
+    // if ($('#substable').children.length > 0) {
+    //      $('#substable').empty();
+    // }
+
+    if (table.children.length > 0)
+        table.empty();
 
     // test print IMSI
     console.log('test print imsi: ' + subs[1][3]);
@@ -71,8 +75,8 @@ function renderAllSubscribers(subs) {
         '            </tr>\n' +
         '            </thead>';
 
-    $('#substable').append(header);
-
+    //$('#substable').append(header);
+    table.append(header);
 
     for (var i = 0; i < subsL; i++) {
 
@@ -100,114 +104,93 @@ function renderAllSubscribers(subs) {
         }
         tbody.appendChild(tr);
     }
-    $('#substable').append(tbody);
+    //$('#substable').append(tbody);
+    table.append(tbody);
 }
 
-
-function updateSubscribers() {
-    getSubscribers();
-}
-
-
-// function looper() {
-//
-//     updateSubscriber();
-//
-//     setTimeout(function () {
-//         looper();
-//     }, 60000)
-// }
 
 function evaluateCheckboxes() {
 
-    var boxes = getAllCheckboxes();
-    console.log(boxes);
+    var boxes = getAllCheckboxes(),
+        checkedBoxes = [],
+        length = boxes.length,
+        i;
 
-    var checkedBoxes = [];
+    //console.log(boxes);
 
-    for (var i = 0; i < boxes.length; i++) {
+    for (i = 0; i < length; i++) {
 
         if (boxes[i].checked === true) {
 
             checkedBoxes.push(boxes[i].value);
         }
-
-        //console.log(boxes[i].value);
     }
-    console.log(checkedBoxes);
+    //console.log(checkedBoxes);
 
     return checkedBoxes;
 }
+
 
 function getAllCheckboxes() {
     return document.querySelectorAll('input[type=checkbox]');
 }
 
-function selectAllSubscribers() {
-    var boxes = getAllCheckboxes();
-    for (var i = 0; i < boxes.length; i++) {
-        //boxes[i].checked = boxes[i].checked ? false : true;
-        boxes[i].checked = true;
+
+function selectSubscribers(_choice) {
+    var boxes = getAllCheckboxes(),
+        length = boxes.length,
+        i;
+
+    for (i = 0; i < length; i++) {
+        boxes[i].checked = _choice;
     }
 }
 
-function selectNoSubscribers() {
-    var boxes = getAllCheckboxes();
-    for (var i = 0; i < boxes.length; i++) {
-        //boxes[i].checked = boxes[i].checked ? false : true;
-        boxes[i].checked = false;
-    }
-}
-
+// ## Event listener ## //
 
 $('#showsubs').on('click', function (event) {
     event.preventDefault();
-    var element = $(this);
-    console.log('showsubs button clicked');
+    //var element = $(this);
+    //console.log('showsubs button clicked');
 
-    getSubscribers(element);
+    getSubscribers();
 });
 
 $('#selectall').on('click', function (event) {
     event.preventDefault();
-    var element = $(this);
-    console.log('selectall button clicked');
+    //var element = $(this);
+    //console.log('selectall button clicked');
 
-    selectAllSubscribers();
+    selectSubscribers(true);
+
 });
 
 $('#selectnone').on('click', function (event) {
     event.preventDefault();
-    var element = $(this);
-    console.log('selectnone button clicked');
+    //var element = $(this);
+    //console.log('selectnone button clicked');
 
-    selectNoSubscribers();
+    selectSubscribers(false);
 });
 
 $('#sendbroadcast').on('click', function (event) {
     event.preventDefault();
-    var element = $(this);
+    //var element = $(this);
     console.log('broadcast button clicked');
 
-    var message = document.getElementById("textArea").value;
-    console.log(message);
-
-
-    var selectedSubs = evaluateCheckboxes();
-    console.log('selectedSubs: '+ selectedSubs);
-
-    var data = [selectedSubs, message];
-    console.log(data);
-
-    var obj = {
+    var message = document.getElementById("textArea").value,
+        selectedSubs = evaluateCheckboxes(),
+        obj = {
         subs: selectedSubs,
         msg: message
-    }
+    };
 
     console.log(obj);
 
     sendBroadcast(obj);
 });
+
+// ## initialise ## //
 
 function init() {
     getSubscribers();
