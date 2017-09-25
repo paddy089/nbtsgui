@@ -31,3 +31,15 @@ def send_broadcast(request):
     #broadcastSMS(subs, msg)
 
     return HttpResponse('send_broadcast success')
+
+
+def del_sub(request):
+
+    subs = request.GET.getlist('subs[]')
+    print(subs)
+
+    for s in subs:
+
+        delSub(s)
+
+    return HttpResponse('del_sub success')

@@ -48,20 +48,37 @@ def broadcastSMS(receiverIDs, message):
 ## check subscriber status
 def checkSubsState(subsList):
     resList = []
-    #subState = [0] * len(subsList)
     counter = 0
     for x in subsList:
-        print(counter)
         arg = comSub + str(x)
         print(str.encode(arg, 'ascii'))
         resList.append(execCommand(str.encode(arg, 'ascii')))
         #TODO check LAC and set value in subState
         if "LAC: 1/0x1" in str(resList[counter]):
-            print(str(x)+" ist Online: "+str(resList[counter]))
+            print(str(x)+" ist Online.")
         else:
-            print(str(x) + " ist Offline: " + str(resList[counter]))
+            print(str(x) + " ist Offline.")
         counter = counter +1
     return
+
+## add Subscriber
+def addSub(imsi,name):
+    arg1 = "subscriber create imsi " + str(imsi)
+    execCommand(str.encode(arg1, 'ascii'))
+    arg2 = "show subscriber imsi " + str(imsi)
+    cb = (execCommand(str.encode(arg2, 'ascii')))
+    cb2str = str(cb)
+    split = cb2str.split()
+    _id = split[5]
+    id = _id[0:2]
+    arg3 = "enable"
+    execCommand(str.encode(arg3, 'ascii'))
+    arg4 = "subscriber id " +id+ " authorized 1"
+    execCommand(str.encode(arg4, 'ascii'))
+    arg5 = "subscriber id " + id + " name " + name
+    execCommand(str.encode(arg5, 'ascii'))
+    arg6 = "disable"
+    execCommand(str.encode(arg6, 'ascii'))
 
 
 ## TESTS
@@ -79,5 +96,5 @@ def checkSubsState(subsList):
 #
 #
 # ## test checkSubsState
-# subList= [2, 8]
-# checkSubsState(subList)
+#subList= [20, 22]
+#checkSubsState(subList)

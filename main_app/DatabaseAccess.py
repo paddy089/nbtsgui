@@ -3,26 +3,27 @@ import sqlite3
 # database Path
 path = '/home/mone2/openbsc-0.14.0/openbsc/src/osmo-nitb/hlr.sqlite3'
 
-cursor = None
-
-
-# establish connection and return cursor obj
-def connect():
-    # connect to DB
-    conn = sqlite3.connect(path)
-    cursor = conn.cursor()
-    return cursor
-
 
 # get all Subscribers, return list
 def getSubscribers():
-    global cursor
-    if cursor is None:
-        cursor = connect()
+
+    conn = sqlite3.connect(path)
+    cursor = conn.cursor()
+
 
     cursor.execute("SELECT * FROM Subscriber")
     outList = cursor.fetchall()
+    conn.close()
     return outList
+
+def delSub(id):
+    conn = sqlite3.connect(path)
+    cursor = conn.cursor()
+
+    cursor.execute("DELETE FROM Subscriber WHERE id=" + id)
+    conn.commit()
+
+    conn.close()
 
 # kllk
 # subscriberList = getSubscribers()

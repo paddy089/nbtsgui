@@ -41,6 +41,28 @@ function sendBroadcast(data) {
         },
         success: function (response) {
             console.log(response);
+            getSubscribers()
+        }
+    })
+}
+
+function delete_subscriber(data) {
+    $.ajax({
+        url: '/del_sub/',
+        type: 'GET',
+        data: data,
+        async: true,
+        beforeSend: function () {
+            //$('#ajaxGif').show();
+        },
+        complete: function () {
+            //$('#ajaxGif').hide();
+        },
+        error: function () {
+            alert("'delete subscriber' Request has failed");
+        },
+        success: function (response) {
+            console.log(response);
         }
     })
 }
@@ -183,11 +205,25 @@ $('#sendbroadcast').on('click', function (event) {
         obj = {
         subs: selectedSubs,
         msg: message
-    };
+        };
 
     console.log(obj);
 
     sendBroadcast(obj);
+});
+
+$('#delete_sub').on('click', function (event) {
+    event.preventDefault();
+    //var element = $(this);
+    console.log('del sub button clicked');
+
+    var selected = evaluateCheckboxes(),
+        obj = {
+            subs: selected
+        }
+
+    console.log(obj)
+    delete_subscriber(obj);
 });
 
 // ## initialise ## //
