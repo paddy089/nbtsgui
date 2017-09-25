@@ -43,3 +43,15 @@ def del_sub(request):
         delSub(s)
 
     return HttpResponse('del_sub success')
+
+
+def add_sub(request):
+
+    imsi = request.GET.get('imsi')
+    name = request.GET.get('name')
+
+    print(imsi, name)
+
+    s = addSub(imsi, name)
+
+    return HttpResponse(s)

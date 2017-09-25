@@ -75,11 +75,12 @@ def addSub(imsi,name):
     execCommand(str.encode(arg3, 'ascii'))
     arg4 = "subscriber id " +id+ " authorized 1"
     execCommand(str.encode(arg4, 'ascii'))
-    arg5 = "subscriber id " + id + " name " + name
+    arg5 = "subscriber id " + id + " name " + str(name)
     execCommand(str.encode(arg5, 'ascii'))
     arg6 = "disable"
     execCommand(str.encode(arg6, 'ascii'))
 
+    return 'addSub success'
 
 ## TESTS
 
