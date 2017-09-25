@@ -1,5 +1,6 @@
 'use strict';
 
+var currentSubscribers;
 
 function getSubscribers() {
     console.log('get_subscribers ajax')
@@ -20,8 +21,34 @@ function getSubscribers() {
         },
         success: function (response) {
             var o = JSON.parse(response);
+            currentSubscribers = o;
             console.log(o);
             renderAllSubscribers(o)
+        }
+    })
+}
+
+function showStatus() {
+    $.ajax({
+        url: '/show_status/',
+        type: 'GET',
+        //data: element.attr('data-id')
+        async: true,
+        beforeSend: function () {
+            $('#ajaxGif').show();
+
+        },
+        complete: function () {
+            $('#ajaxGif').hide();
+        },
+        error: function () {
+            alert("'showStatus' Request has failed");
+        },
+        success: function (response) {
+            var o = JSON.parse(response);
+            console.log(o);
+            renderStatus(o);
+
         }
     })
 }
@@ -107,20 +134,21 @@ function renderAllSubscribers(subs) {
     console.log('test print imsi: ' + subs[1][3]);
 
     var subsL = subs.length,
-        indices = [0, 3, 5, 4, 999],
+        indices = [0, 3, 5, 4, 999, 999],
         tbody = document.createElement('tbody'),
         tr,
         td,
         sub,
         header = ' <thead>\n' +
-        '            <tr>\n' +
-        '                <th>Id</th>\n' +
-        '                <th>IMSI</th>\n' +
-        '                <th>Extension</th>\n' +
-        '                <th>Name</th>\n' +
-        '                <th>Select</th>\n' +
-        '            </tr>\n' +
-        '            </thead>';
+            '            <tr>\n' +
+            '                <th>Id</th>\n' +
+            '                <th>IMSI</th>\n' +
+            '                <th>Extension</th>\n' +
+            '                <th>Name</th>\n' +
+            '                <th>Select</th>\n' +
+            '                <th>Status</th>\n' +
+            '            </tr>\n' +
+            '            </thead>';
 
     //$('#substable').append(header);
     table.append(header);
@@ -130,6 +158,7 @@ function renderAllSubscribers(subs) {
         sub = subs[i];
 
         tr = document.createElement('tr');
+        //tr.setAttribute('id', sub[0]);
 
         for (var c = 0; c < indices.length; c++) {
 
@@ -148,11 +177,31 @@ function renderAllSubscribers(subs) {
                 td.appendChild(box);
 
             }
+            if (c === 5) {
+                td.setAttribute('id', sub[0]);
+            }
         }
         tbody.appendChild(tr);
     }
     //$('#substable').append(tbody);
     table.append(tbody);
+}
+
+function renderStatus(statusSubs) {
+
+    for (var i = 0; i < currentSubscribers.length; i++) {
+
+        var sub = currentSubscribers[i];
+        var id = sub[0];
+
+        console.log(id);
+
+       // var t = document.querySelectorAll('td[id=' + id + ']');
+        var t = $('#'+id).html(statusSubs[id]);
+        console.log(t);
+        console.log(statusSubs[id]);
+        //t.innerHTML = statusSubs[id];
+    }
 }
 
 
@@ -201,6 +250,14 @@ $('#showsubs').on('click', function (event) {
     //console.log('showsubs button clicked');
 
     getSubscribers();
+});
+
+$('#showstatus').on('click', function (event) {
+    event.preventDefault();
+    //var element = $(this);
+    //console.log('showsubs button clicked');
+
+    showStatus();
 });
 
 $('#selectall').on('click', function (event) {

@@ -13,11 +13,28 @@ def index(request):
 
 def get_subscribers(request):
     s = getSubscribers()
-    s = json.dumps(s)
     print(s)
+    s = json.dumps(s)
+
 
     return HttpResponse(s)
 
+
+def show_status(request):
+    s = getSubscribers()
+
+    list = []
+
+    for sub in s:
+        a = sub[0]
+        list = list + [a]
+
+    checkSub = checkSubsState(list)
+    print(checkSub)
+
+    checkJson = json.dumps(checkSub)
+
+    return HttpResponse(checkJson)
 
 def send_broadcast(request):
     print(request)

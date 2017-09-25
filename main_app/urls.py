@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^send_broadcast/$', views.send_broadcast, name='send_broadcast'),
     url(r'^del_sub/$', views.del_sub, name='del_sub'),
     url(r'^add_sub/$', views.add_sub, name='add_sub'),
+    url(r'^show_status/$', views.show_status, name='show_status'),
 ]

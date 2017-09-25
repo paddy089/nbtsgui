@@ -47,6 +47,7 @@ def broadcastSMS(receiverIDs, message):
 
 ## check subscriber status
 def checkSubsState(subsList):
+    state = {}
     resList = []
     counter = 0
     for x in subsList:
@@ -56,10 +57,12 @@ def checkSubsState(subsList):
         #TODO check LAC and set value in subState
         if "LAC: 1/0x1" in str(resList[counter]):
             print(str(x)+" ist Online.")
+            state[str(x)] = 'Online'
         else:
             print(str(x) + " ist Offline.")
+            state[str(x)] = 'Offline'
         counter = counter +1
-    return
+    return state
 
 ## add Subscriber
 def addSub(imsi,name):
