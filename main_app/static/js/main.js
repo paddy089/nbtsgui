@@ -217,6 +217,6 @@ function init() {
     // }, 3000)
 }
 
-//init();
+init();
 
 console.log('main.js loaded')
