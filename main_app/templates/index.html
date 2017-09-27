@@ -20,18 +20,19 @@
 
     <div class="content">
 
-        <div class="row">
+        <div class="row functions">
 
             <div class="col-sm-4 col-sm-offset-1 border-test">
                 <!-- ## functionality ## -->
 
-                <h2 class="listheader" id="refreshlistheader">
-                    Update subscriber list
-                </h2>
-                <button id="showsubs" data-id="" class="btn btn-danger margin-bottom" type="button">Update</button>
-                <button id="showstatus" data-id="" class="btn btn-info margin-bottom" type="button">Show status</button>
+{#                <!-- ## Update and Status -->#}
+{#                <h2 class="listheader" id="refreshlistheader">#}
+{#                    Update subscriber list#}
+{#                </h2>#}
+{#                <button id="showsubs" data-id="" class="btn btn-default margin-bottom" type="button">Update</button>#}
+{#                <button id="showstatus" data-id="" class="btn btn-info margin-bottom" type="button">Show status</button>#}
 
-
+                <!-- ## broadcast -->
                 <h2 class="listheader margin-top" id="smslistheader">
                     Send admin message to subscribers
                 </h2>
@@ -39,6 +40,7 @@
                     Broadcast
                 </button>
 
+                <!-- ## Select -->
                 <div class=" margin-top-small">
                     <button id="selectall" data-id="" class="btn btn-sm btn-default" type="button">
                         Select all
@@ -49,6 +51,8 @@
 
                 </div>
 
+                <!-- ## message field -->
+
                 <div class="form-group margin-top padding-right">
                     <div class="">
                         <span class="help-block">Type in your message</span>
@@ -57,37 +61,45 @@
                     </div>
                 </div>
 
-                <h2 class="listheader margin-top" id="">
-                    Delete subscriber from HLR
-                </h2>
-                <button id="delete_sub" data-id="" class="btn  btn-primary" type="button">
-                    Delete
-                </button>
 
+                <!-- ## Add sibscriber-->
 
                 <h2 class="listheader margin-top" id="">
                     Add subscriber to HLR
                 </h2>
 
 
-                <div class="form-group margin-top padding-right">
+                <div class="form-group margin-top-small padding-right">
                     <div class="">
                         <span class="help-block">IMSI</span>
-                        <textarea class="form-control" rows="1" id="textImsi"></textarea>
+{#                        <textarea class="form-control" rows="1" id="textImsi"></textarea>#}
+                        <input class="form-control input-sm" id="textImsi"></input>
 
                     </div>
                 </div>
 
-                <div class="form-group margin-top padding-right">
+
+                <div class="form-group margin-top-small padding-right">
                     <div class="">
                         <span class="help-block">Name</span>
-                        <textarea class="form-control" rows="1" id="textName"></textarea>
+                        <label class="control-label" for="inputSmall">Name</label>
+{#                        <textarea class="form-control" rows="1" id="textName"></textarea>#}
+                        <input class="form-control input-sm" id="textName"></input>
 
                     </div>
                 </div>
 
-                <button id="add_sub" data-id="" class="btn  btn-primary" type="button">
+                <button id="add_sub" data-id="" class="btn btn-success" type="button">
                     Add
+                </button>
+
+                <!-- ## Delete sibscriber-->
+
+                <h2 class="listheader margin-top">
+                    Delete subscriber from HLR
+                </h2>
+                <button id="delete_sub" data-id="" class="btn  btn-danger" type="button">
+                    Delete
                 </button>
 
 
@@ -99,9 +111,15 @@
             <div class="col-sm-6  border-test">
                 <div class="panel panel-default col-sm-12 table-responsive" id="subs">
 
-                    <div class="panel-heading">Subscriber</div>
+                    <div class="panel-heading">Subscriber
+                        <div class="panel-buttons">
 
-                    <table class="table table-hover table-bordered table-condensed" id="substable"></table>
+                            <button id="showsubs" data-id="" class="btn btn-xs btn-primary" type="button">Update</button>
+                            <button id="showstatus" data-id="" class="btn btn-xs btn-info" type="button">Show status</button>
+                        </div>
+                    </div>
+
+                    <table class="table table-hover table-striped table-condensed" id="substable"></table>
                 </div>
 
             </div>

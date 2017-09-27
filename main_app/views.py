@@ -45,7 +45,7 @@ def send_broadcast(request):
     print(subs)
     print(msg)
 
-    #broadcastSMS(subs, msg)
+    broadcastSMS(subs, msg)
 
     return HttpResponse('send_broadcast success')
 

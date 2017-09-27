@@ -311,7 +311,7 @@ $('#delete_sub').on('click', function (event) {
 $('#add_sub').on('click', function (event) {
     event.preventDefault();
     //var element = $(this);
-    console.log('del sub button clicked');
+    console.log('add sub button clicked');
 
     var imsi = document.getElementById("textImsi").value,
         name = document.getElementById("textName").value,

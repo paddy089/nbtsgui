@@ -46,7 +46,7 @@ main {
 .listheader {
     font-weight: bold;
     font-size: x-large;
-    padding-bottom: 30px;
+    padding-bottom: 2rem;
     margin: 0;
 }
 .margin-bottom{
@@ -64,4 +64,13 @@ h1 {
     margin-top: 5vh;
     font-family: Dosis;
     font-size: 5rem;
+}
+
+.functions {
+    overflow-y: scroll;
+}
+
+.panel-buttons {
+    display: inline;
+    margin-left: 30rem;
 }
