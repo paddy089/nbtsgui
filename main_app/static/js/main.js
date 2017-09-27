@@ -3,18 +3,13 @@
 var currentSubscribers;
 
 function getSubscribers() {
-    console.log('get_subscribers ajax')
     $.ajax({
         url: '/get_subscribers/',
         type: 'GET',
-        //data: element.attr('data-id')
         async: true,
         beforeSend: function () {
-            //$('#ajaxGif').show();
-
         },
         complete: function () {
-            //$('#ajaxGif').hide();
         },
         error: function () {
             alert("'getSubscribers' Request has failed");
@@ -28,11 +23,11 @@ function getSubscribers() {
     })
 }
 
+
 function showStatus() {
     $.ajax({
         url: '/show_status/',
         type: 'GET',
-        //data: element.attr('data-id')
         async: true,
         beforeSend: function () {
             $('#ajaxGif').show();
@@ -45,13 +40,14 @@ function showStatus() {
             alert("'showStatus' Request has failed");
         },
         success: function (response) {
-            var o = JSON.parse(response);
-            console.log(o);
-            renderStatus(o);
+            var _response = JSON.parse(response);
+            console.log(_response);
+            renderStatus(_response);
 
         }
     })
 }
+
 
 function sendBroadcast(data) {
     $.ajax({
@@ -75,6 +71,7 @@ function sendBroadcast(data) {
     })
 }
 
+
 function delete_subscriber(data) {
     $.ajax({
         url: '/del_sub/',
@@ -82,20 +79,20 @@ function delete_subscriber(data) {
         data: data,
         async: true,
         beforeSend: function () {
-            //$('#ajaxGif').show();
         },
         complete: function () {
-            //$('#ajaxGif').hide();
         },
         error: function () {
             alert("'delete subscriber' Request has failed");
         },
         success: function (response) {
-            getSubscribers();
             console.log(response);
+            getSubscribers();
+
         }
     })
 }
+
 
 function add_subscriber(data) {
     $.ajax({
@@ -113,29 +110,22 @@ function add_subscriber(data) {
             alert("'add subscriber' Request has failed");
         },
         success: function (response) {
-            getSubscribers();
             console.log(response);
+            getSubscribers();
+
         }
     })
 }
 
+
 function renderAllSubscribers(subs) {
 
-    var table = $('#substable');
-
-    // if ($('#substable').children.length > 0) {
-    //      $('#substable').empty();
-    // }
-
-    if (table.children.length > 0)
-        table.empty();
-
-    // test print IMSI
-    console.log('test print imsi: ' + subs[1][3]);
-
-    var subsL = subs.length,
+    var table = $('#substable'),
+        timeDiv = $('#status-time'),
+        subsL = subs.length,
         indices = [0, 3, 5, 4, 999, 999],
         tbody = document.createElement('tbody'),
+        time = new Date().toLocaleString(),
         tr,
         td,
         sub,
@@ -150,7 +140,9 @@ function renderAllSubscribers(subs) {
             '            </tr>\n' +
             '            </thead>';
 
-    //$('#substable').append(header);
+    if (table.children.length > 0)
+        table.empty();
+
     table.append(header);
 
     for (var i = 0; i < subsL; i++) {
@@ -158,7 +150,6 @@ function renderAllSubscribers(subs) {
         sub = subs[i];
 
         tr = document.createElement('tr');
-        //tr.setAttribute('id', sub[0]);
 
         for (var c = 0; c < indices.length; c++) {
 
@@ -183,24 +174,20 @@ function renderAllSubscribers(subs) {
         }
         tbody.appendChild(tr);
     }
-    //$('#substable').append(tbody);
     table.append(tbody);
+    timeDiv.html(time);
 }
+
 
 function renderStatus(statusSubs) {
 
     for (var i = 0; i < currentSubscribers.length; i++) {
 
-        var sub = currentSubscribers[i];
-        var id = sub[0];
+        var sub = currentSubscribers[i],
+            id = sub[0],
+            cell = $('#' + id);
 
-        console.log(id);
-
-       // var t = document.querySelectorAll('td[id=' + id + ']');
-        var t = $('#'+id).html(statusSubs[id]);
-        console.log(t);
-        console.log(statusSubs[id]);
-        //t.innerHTML = statusSubs[id];
+        cell.html(statusSubs[id]);
     }
 }
 
@@ -212,8 +199,6 @@ function evaluateCheckboxes() {
         length = boxes.length,
         i;
 
-    //console.log(boxes);
-
     for (i = 0; i < length; i++) {
 
         if (boxes[i].checked === true) {
@@ -221,7 +206,6 @@ function evaluateCheckboxes() {
             checkedBoxes.push(boxes[i].value);
         }
     }
-    //console.log(checkedBoxes);
 
     return checkedBoxes;
 }
@@ -233,6 +217,7 @@ function getAllCheckboxes() {
 
 
 function selectSubscribers(_choice) {
+
     var boxes = getAllCheckboxes(),
         length = boxes.length,
         i;
@@ -246,7 +231,6 @@ function selectSubscribers(_choice) {
 
 $('#showsubs').on('click', function (event) {
     event.preventDefault();
-    //var element = $(this);
     //console.log('showsubs button clicked');
 
     getSubscribers();
@@ -254,7 +238,6 @@ $('#showsubs').on('click', function (event) {
 
 $('#showstatus').on('click', function (event) {
     event.preventDefault();
-    //var element = $(this);
     //console.log('showsubs button clicked');
 
     showStatus();
@@ -262,7 +245,6 @@ $('#showstatus').on('click', function (event) {
 
 $('#selectall').on('click', function (event) {
     event.preventDefault();
-    //var element = $(this);
     //console.log('selectall button clicked');
 
     selectSubscribers(true);
@@ -271,7 +253,6 @@ $('#selectall').on('click', function (event) {
 
 $('#selectnone').on('click', function (event) {
     event.preventDefault();
-    //var element = $(this);
     //console.log('selectnone button clicked');
 
     selectSubscribers(false);
@@ -279,8 +260,7 @@ $('#selectnone').on('click', function (event) {
 
 $('#sendbroadcast').on('click', function (event) {
     event.preventDefault();
-    //var element = $(this);
-    console.log('broadcast button clicked');
+    //console.log('broadcast button clicked');
 
     var message = document.getElementById("textArea").value,
         selectedSubs = evaluateCheckboxes(),
@@ -296,15 +276,14 @@ $('#sendbroadcast').on('click', function (event) {
 
 $('#delete_sub').on('click', function (event) {
     event.preventDefault();
-    //var element = $(this);
-    console.log('del sub button clicked');
+    //console.log('del sub button clicked');
 
     var selected = evaluateCheckboxes(),
         obj = {
             subs: selected
         }
 
-    console.log(obj)
+    console.log(obj);
     delete_subscriber(obj);
 });
 
@@ -320,7 +299,7 @@ $('#add_sub').on('click', function (event) {
             name: name
         };
 
-    console.log(obj)
+    console.log(obj);
     add_subscriber(obj);
 });
 
@@ -329,12 +308,19 @@ $('#add_sub').on('click', function (event) {
 function init() {
     $('#ajaxGif').hide();
     getSubscribers();
+
     // setTimeout(function () {
-    //     console.log('init startet');
+    //     console.log('automatic refresh');
     //     getSubscribers();
-    // }, 3000)
+    // }, 60000)
+
+    setInterval(function(){
+        console.log('automatic refresh');
+        getSubscribers();
+    }, 60000);
+
+    console.log('init')
 }
 
 init();
 
-console.log('main.js loaded')
