@@ -1,6 +1,6 @@
 body {
     font-family: "Open Sans";
-
+    color: lightgray;
 }
 
 main {
@@ -80,8 +80,12 @@ h1 {
 }
 
 #status-time {
+    /*font-weight: bold;*/
+}
 
-
+#panel-title {
+    font-weight: bold;
+    font-size: large;
 }
 
 .fat-font {
