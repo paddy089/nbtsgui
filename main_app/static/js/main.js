@@ -244,10 +244,10 @@ $('#showstatus').on('click', function (event) {
     event.preventDefault();
     //console.log('showsubs button clicked');
 
-    //showStatus();
+    showStatus();
 
     // only for testing //
-    renderStatus(zzz);
+    //renderStatus(zzz);
 });
 
 $('#selectall').on('click', function (event) {
@@ -325,10 +325,10 @@ function init() {
 }
 
 // for testing renderStatus //
-var zzz = {
-    '1': 'offline',
-    '9': 'online'
-}
+// var zzz = {
+//     '1': 'offline',
+//     '9': 'online'
+// }
 
 init();
 
