@@ -181,13 +181,19 @@ function renderAllSubscribers(subs) {
 
 function renderStatus(statusSubs) {
 
+    var online = '<i class="glyphicon glyphicon-ok-circle text-success"></i>',
+        offline = '<i class="glyphicon glyphicon-remove-circle text-danger"></i>';
+
     for (var i = 0; i < currentSubscribers.length; i++) {
 
         var sub = currentSubscribers[i],
             id = sub[0],
             cell = $('#' + id);
 
-        cell.html(statusSubs[id]);
+        var c = statusSubs[id] === 'online' ? online : offline;
+
+        cell.html(c);
+        //cell.html(statusSubs[id]);
     }
 }
 
@@ -240,7 +246,8 @@ $('#showstatus').on('click', function (event) {
     event.preventDefault();
     //console.log('showsubs button clicked');
 
-    showStatus();
+    //showStatus();
+    renderStatus(zzz);
 });
 
 $('#selectall').on('click', function (event) {
@@ -320,6 +327,11 @@ function init() {
     }, 60000);
 
     console.log('init')
+}
+
+var zzz = {
+    '1': 'offline',
+    '9': 'online'
 }
 
 init();

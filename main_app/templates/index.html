@@ -12,7 +12,7 @@
 <main>
 
     <div id="ajaxGif">
-        <img src="{% static "stuff/ajax-loader.gif" %}" alt="My image"/>
+        <img src="{% static "stuff/ajax-loader.gif" %}" class="img-responsive center-block" alt="My image"/>
 
     </div>
     <h1>nanoBTS with OpenBSC</h1>
@@ -48,6 +48,7 @@
                     <button id="selectnone" data-id="" class="btn btn-sm btn-default" type="button">
                         Select none
                     </button>
+                    <div class="testicon"></div>
 
                 </div>
 
@@ -124,14 +125,14 @@
 
                         </div>
 
-{#                        <div class="row margin-top-small">#}
-{#                            <div class="panel-buttons">#}
-{##}
-{#                                <button id="showsubs" class="btn btn-xs btn-primary" type="button"><i class="glyphicon glyphicon-refresh"></i></button>#}
-{#                                <button id="showstatus" class="btn btn-xs btn-info" type="button">Show status</button>#}
-{#                            </div>#}
-{##}
-{#                        </div>#}
+                        <div class="row margin-top-small">
+                            <div class="panel-buttons">
+
+                                <button id="showsubs" class="btn btn-xs btn-primary" type="button"><i class="glyphicon glyphicon-refresh"></i></button>
+                                <button id="showstatus" class="btn btn-xs btn-info" type="button">Show status</button>
+                            </div>
+
+                        </div>
 
 
                     </div>
