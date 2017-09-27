@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>nanoBTS</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -25,19 +25,19 @@
             <div class="col-sm-4 col-sm-offset-1 border-test">
                 <!-- ## functionality ## -->
 
-{#                <!-- ## Update and Status -->#}
-{#                <h2 class="listheader" id="refreshlistheader">#}
-{#                    Update subscriber list#}
-{#                </h2>#}
-{#                <button id="showsubs" data-id="" class="btn btn-default margin-bottom" type="button">Update</button>#}
-{#                <button id="showstatus" data-id="" class="btn btn-info margin-bottom" type="button">Show status</button>#}
+                {#                <!-- ## Update and Status -->#}
+                {#                <h2 class="listheader" id="refreshlistheader">#}
+                {#                    Update subscriber list#}
+                {#                </h2>#}
+                {#                <button id="showsubs" data-id="" class="btn btn-default margin-bottom" type="button">Update</button>#}
+                {#                <button id="showstatus" data-id="" class="btn btn-info margin-bottom" type="button">Show status</button>#}
 
                 <!-- ## broadcast -->
-                <h2 class="listheader margin-top" id="smslistheader">
+                <h2 class="listheader margin-bottom text-success" id="smslistheader">
                     Send admin message to subscribers
                 </h2>
-                <button id="sendbroadcast" data-id="" class="btn  btn-primary" type="button">
-                    Broadcast
+                <button id="sendbroadcast" data-id="" class="btn btn-primary btn-sm button-size" type="button">
+                    <i class="glyphicon glyphicon-send"></i>
                 </button>
 
                 <!-- ## Select -->
@@ -53,26 +53,26 @@
 
                 <!-- ## message field -->
 
-                <div class="form-group margin-top padding-right">
+                <div class="form-group margin-top-small padding-right">
                     <div class="">
-                        <span class="help-block">Type in your message</span>
+                        <label class="control-label" for="inputSmall">Type in your message</label>
                         <textarea class="form-control" rows="3" id="textArea"></textarea>
 
                     </div>
                 </div>
 
 
-                <!-- ## Add sibscriber-->
+                <!-- ## Add subscriber-->
 
-                <h2 class="listheader margin-top" id="">
+                <h2 class="listheader margin-top border-test" id="">
                     Add subscriber to HLR
                 </h2>
 
 
                 <div class="form-group margin-top-small padding-right">
                     <div class="">
-                        <span class="help-block">IMSI</span>
-{#                        <textarea class="form-control" rows="1" id="textImsi"></textarea>#}
+                         <label class="control-label" for="inputSmall">IMSI</label>
+                        {#                        <textarea class="form-control" rows="1" id="textImsi"></textarea>#}
                         <input class="form-control input-sm" id="textImsi"></input>
 
                     </div>
@@ -81,25 +81,24 @@
 
                 <div class="form-group margin-top-small padding-right">
                     <div class="">
-                        <span class="help-block">Name</span>
                         <label class="control-label" for="inputSmall">Name</label>
-{#                        <textarea class="form-control" rows="1" id="textName"></textarea>#}
+                        {#                        <textarea class="form-control" rows="1" id="textName"></textarea>#}
                         <input class="form-control input-sm" id="textName"></input>
 
                     </div>
                 </div>
 
-                <button id="add_sub" data-id="" class="btn btn-success" type="button">
-                    Add
+                <button id="add_sub" data-id="" class="btn btn-success btn-sm button-size" type="button">
+                    <i class="glyphicon glyphicon-plus-sign button-size"></i>
                 </button>
 
                 <!-- ## Delete sibscriber-->
 
-                <h2 class="listheader margin-top">
+                <h2 class="listheader margin-top border-test">
                     Delete subscriber from HLR
                 </h2>
-                <button id="delete_sub" data-id="" class="btn  btn-danger" type="button">
-                    Delete
+                <button id="delete_sub" data-id="" class="btn btn-danger btn-sm button-size" type="button">
+                    <i class="glyphicon glyphicon-minus-sign button-size"></i>
                 </button>
 
 
@@ -108,16 +107,33 @@
 
             <!-- ## table with subscribers ## -->
 
-            <div class="col-sm-6  border-test">
+            <div class="col-sm-6">
                 <div class="panel panel-default col-sm-12 table-responsive" id="subs">
 
-                    <div class="panel-heading">Subscriber
-                        <div id="status-time"></div>
-                        <div class="panel-buttons">
+                    <div class="panel-heading">
 
-                            <button id="showsubs" data-id="" class="btn btn-xs btn-primary" type="button">Update</button>
-                            <button id="showstatus" data-id="" class="btn btn-xs btn-info" type="button">Show status</button>
+                        <div class="row">
+                            <div class="border-test margin-left-small fat-font text-warning">Current Subscribers</div>
+{#                            <div class="col-sm-3 border-test"></div>#}
+{#                            <div class="col-sm-5 col-sm-offset-1 text-primary border-test" id="status-time"></div>#}
+
                         </div>
+
+                        <div class="row">
+                            <div class="text-primary border-test margin-left-small" id="status-time"></div>
+
+                        </div>
+
+{#                        <div class="row margin-top-small">#}
+{#                            <div class="panel-buttons">#}
+{##}
+{#                                <button id="showsubs" class="btn btn-xs btn-primary" type="button"><i class="glyphicon glyphicon-refresh"></i></button>#}
+{#                                <button id="showstatus" class="btn btn-xs btn-info" type="button">Show status</button>#}
+{#                            </div>#}
+{##}
+{#                        </div>#}
+
+
                     </div>
 
                     <table class="table table-hover table-striped table-condensed" id="substable"></table>
