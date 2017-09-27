@@ -190,9 +190,7 @@ function renderStatus(statusSubs) {
             id = sub[0],
             cell = $('#' + id);
 
-        var c = statusSubs[id] === 'online' ? online : offline;
-
-        cell.html(c);
+        cell.html(statusSubs[id] === 'online' ? online : offline);
         //cell.html(statusSubs[id]);
     }
 }
@@ -247,6 +245,8 @@ $('#showstatus').on('click', function (event) {
     //console.log('showsubs button clicked');
 
     //showStatus();
+
+    // only for testing //
     renderStatus(zzz);
 });
 
@@ -316,19 +316,15 @@ function init() {
     $('#ajaxGif').hide();
     getSubscribers();
 
-    // setTimeout(function () {
+    // setInterval(function(){
     //     console.log('automatic refresh');
     //     getSubscribers();
-    // }, 60000)
-
-    setInterval(function(){
-        console.log('automatic refresh');
-        getSubscribers();
-    }, 60000);
+    // }, 60000);
 
     console.log('init')
 }
 
+// for testing renderStatus //
 var zzz = {
     '1': 'offline',
     '9': 'online'

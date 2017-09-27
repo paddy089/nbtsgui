@@ -11,19 +11,29 @@
 <body>
 <main>
 
-    <div id="ajaxGif">
-        <img src="{% static "stuff/ajax-loader.gif" %}" class="img-responsive center-block" alt="My image"/>
 
+    {#        <img src="{% static "stuff/5.gif" %}" alt="My image"/>#}
+    <div class="centered">
+        <div id="ajaxGif" class="loader"></div>
     </div>
-    <h1>nanoBTS with OpenBSC</h1>
+
+
+    {#    <div id="ajaxGif" class="cssload-thecube centered">#}
+    {#        <div class="cssload-cube cssload-c1"></div>#}
+    {#        <div class="cssload-cube cssload-c2"></div>#}
+    {#        <div class="cssload-cube cssload-c4"></div>#}
+    {#        <div class="cssload-cube cssload-c3"></div>#}
+    {#    </div>#}
+
+    <h1 class="text-success">nanoBTS with OpenBSC</h1>
 
 
     <div class="content">
 
-        <div class="row functions">
+        <div class="row">
 
-            <div class="col-sm-4 col-sm-offset-1 border-test">
-                <!-- ## functionality ## -->
+            <div class="col-sm-4 col-sm-offset-1">
+
 
                 {#                <!-- ## Update and Status -->#}
                 {#                <h2 class="listheader" id="refreshlistheader">#}
@@ -32,29 +42,14 @@
                 {#                <button id="showsubs" data-id="" class="btn btn-default margin-bottom" type="button">Update</button>#}
                 {#                <button id="showstatus" data-id="" class="btn btn-info margin-bottom" type="button">Show status</button>#}
 
-                <!-- ## broadcast -->
-                <h2 class="listheader margin-bottom text-success" id="smslistheader">
+                <!-- ## broadcast ## -->
+                <h2 class="listheader text-primary" id="smslistheader">
                     Send admin message to subscribers
                 </h2>
-                <button id="sendbroadcast" data-id="" class="btn btn-primary btn-sm button-size" type="button">
-                    <i class="glyphicon glyphicon-send"></i>
-                </button>
 
-                <!-- ## Select -->
-                <div class=" margin-top-small">
-                    <button id="selectall" data-id="" class="btn btn-sm btn-default" type="button">
-                        Select all
-                    </button>
-                    <button id="selectnone" data-id="" class="btn btn-sm btn-default" type="button">
-                        Select none
-                    </button>
-                    <div class="testicon"></div>
+                <!-- ## message field ## -->
 
-                </div>
-
-                <!-- ## message field -->
-
-                <div class="form-group margin-top-small padding-right">
+                <div class="form-group padding-right">
                     <div class="">
                         <label class="control-label" for="inputSmall">Type in your message</label>
                         <textarea class="form-control" rows="3" id="textArea"></textarea>
@@ -63,16 +58,31 @@
                 </div>
 
 
-                <!-- ## Add subscriber-->
+                {#                <div class=" margin-top-small">#}
+                <button id="selectall" data-id="" class="btn btn-sm btn-default" type="button">
+                    <i class="glyphicon glyphicon-ok"></i>
+                </button>
+                <button id="selectnone" data-id="" class="btn btn-sm btn-default" type="button">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
 
-                <h2 class="listheader margin-top border-test" id="">
-                    Add subscriber to HLR
+                {#                </div>#}
+
+                <button id="sendbroadcast" data-id="" class="btn btn-primary btn-sm button-size" type="button">
+                    <i class="glyphicon glyphicon-send"></i>
+                </button>
+
+
+                <!-- ## Add/delete subscriber ## -->
+
+                <h2 class="listheader margin-top margin-bottom text-primary">
+                    Add or delete subscriber
                 </h2>
 
 
-                <div class="form-group margin-top-small padding-right">
+                <div class="form-group padding-right">
                     <div class="">
-                         <label class="control-label" for="inputSmall">IMSI</label>
+                        <label class="control-label" for="inputSmall">IMSI</label>
                         {#                        <textarea class="form-control" rows="1" id="textImsi"></textarea>#}
                         <input class="form-control input-sm" id="textImsi"></input>
 
@@ -92,15 +102,18 @@
                 <button id="add_sub" data-id="" class="btn btn-success btn-sm button-size" type="button">
                     <i class="glyphicon glyphicon-plus-sign button-size"></i>
                 </button>
-
-                <!-- ## Delete sibscriber-->
-
-                <h2 class="listheader margin-top border-test">
-                    Delete subscriber from HLR
-                </h2>
                 <button id="delete_sub" data-id="" class="btn btn-danger btn-sm button-size" type="button">
                     <i class="glyphicon glyphicon-minus-sign button-size"></i>
                 </button>
+
+                <!-- ## Delete sibscriber-->
+
+                {#                <h2 class="listheader margin-top border-test">#}
+                {#                    Delete subscriber from HLR#}
+                {#                </h2>#}
+                {#                <button id="delete_sub" data-id="" class="btn btn-danger btn-sm button-size" type="button">#}
+                {#                    <i class="glyphicon glyphicon-minus-sign button-size"></i>#}
+                {#                </button>#}
 
 
             </div>
@@ -111,33 +124,30 @@
             <div class="col-sm-6">
                 <div class="panel panel-default col-sm-12 table-responsive" id="subs">
 
+                    <!-- panel -->
                     <div class="panel-heading">
 
                         <div class="row">
                             <div class="border-test margin-left-small" id="panel-title">Current Subscribers</div>
-{#                            <div class="col-sm-3 border-test"></div>#}
-{#                            <div class="col-sm-5 col-sm-offset-1 text-primary border-test" id="status-time"></div>#}
-
                         </div>
 
                         <div class="row">
                             <div class="text-info border-test margin-left-small" id="status-time"></div>
-
                         </div>
 
-                        <div class="row margin-top-small">
-                            <div class="panel-buttons">
+                        <div class="row margin-left-small border-test">
 
-                                <button id="showsubs" class="btn btn-xs btn-primary" type="button"><i class="glyphicon glyphicon-refresh"></i></button>
-                                <button id="showstatus" class="btn btn-xs btn-info" type="button">Show status</button>
-                            </div>
+                            {#                            <button id="showsubs" class="btn btn-xs btn-primary" type="button"><i#}
+                            {#                                    class="glyphicon glyphicon-refresh"></i></button>#}
+                            <p>Update online status</p>
+                            <button id="showstatus" class="btn btn-xs btn-info" type="button">Show status</button>
 
                         </div>
 
 
                     </div>
-
-                    <table class="table table-hover table-striped table-condensed" id="substable"></table>
+                    <!-- table -->
+                    <table class="table table-hover table-striped" id="substable"></table>
                 </div>
 
             </div>
