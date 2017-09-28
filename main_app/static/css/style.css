@@ -1,5 +1,5 @@
 body {
-    font-family: "Open Sans";
+    /*font-family: "sans-serif";*/
     color: lightgray;
 }
 
@@ -54,7 +54,6 @@ h1 {
     text-align: center;
     /*margin-left: 7vh;*/
     margin-top: 5vh;
-    font-family: Dosis;
     font-size: 5rem;
 }
 

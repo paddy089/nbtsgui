@@ -125,7 +125,6 @@ function renderAllSubscribers(subs) {
         subsL = subs.length,
         indices = [0, 3, 5, 4, 999, 999],
         tbody = document.createElement('tbody'),
-        time = new Date().toLocaleString(),
         tr,
         td,
         sub,
@@ -175,14 +174,15 @@ function renderAllSubscribers(subs) {
         tbody.appendChild(tr);
     }
     table.append(tbody);
-    timeDiv.html(time);
+    timeDiv.html(new Date().toLocaleString());
 }
 
 
 function renderStatus(statusSubs) {
 
     var online = '<i class="glyphicon glyphicon-ok-circle text-success"></i>',
-        offline = '<i class="glyphicon glyphicon-remove-circle text-danger"></i>';
+        offline = '<i class="glyphicon glyphicon-remove-circle text-danger"></i>',
+        timeDiv = $('#status-time');
 
     for (var i = 0; i < currentSubscribers.length; i++) {
 
@@ -190,8 +190,10 @@ function renderStatus(statusSubs) {
             id = sub[0],
             cell = $('#' + id);
 
-        cell.html(statusSubs[id] === 'online' ? online : offline);
+        cell.html(statusSubs[id] === 'Online' ? online : offline);
         //cell.html(statusSubs[id]);
+
+         timeDiv.html(new Date().toLocaleString());
     }
 }
 
